@@ -16,8 +16,7 @@ class InviteType extends AbstractType
     {
         $builder
             ->add('email', 'text', array(
-                 'label' => 'Adresse email',
-                 'data' => 'junkbutawesome.os@gmail.com'
+                 'label' => 'Adresse email'
             ))
             ->add('message', 'text', array(
                  'label' => 'Invitation',

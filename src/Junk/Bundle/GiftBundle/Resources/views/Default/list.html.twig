@@ -2,24 +2,32 @@
 
 {% block body %}
   <div class="container">
-      <div class="list-group">
-        {% for event in events %}
-          <div class="list-group-item">
-              <div class="row-action-primary">
-                <i class="material-icons">event</i>
-              </div>
-              <div class="row-content">
-                  <div class="least-content">{{ event.startdate |date("d/m/Y", false) }}</div>
-                  <h4 class="list-group-item-heading"><a href="{{ path('junk_gift_bundle_event',{'id' : event.id}) }}">{{ event.name }}</a></h4>
-                  <p class="list-group-item-text">Organisé par {{ event.owner.firstname }} {{ event.owner.lastname }}</p>
-                  <a href="{{ path('junk_gift_bundle_invite_event',{'id' : event.id}) }}" class="btn btn-primary"><i class="material-icons">person_add</i></a>
-                  <a href="{{ path('junk_gift_bundle_repartir_event',{'id' : event.id}) }}" class="btn btn-primary"><i class="material-icons">card_giftcard</i></a>
-              </div>
-          </div>
-          <div class="list-group-separator"></div>
-        {% endfor %}
-  </div>
-  <div>
-    <a href="{{ path('junk_gift_bundle_create_event') }}" class="btn btn-danger btn-fab" style="position : fixed; bottom : 30px; right : 20px;"><i class="material-icons">add</i></a>
-  </div>
+    {% if events is empty %}
+    <div class="jumbotron">
+        <h2>Liste de vos événements</h2>
+        <p>Vous n'avez pas encore créé d'événements</p>
+        <a href="{{ path('junk_gift_bundle_create_event') }}" class="btn btn-raised btn btn-primary btn-lg">Créer un événement</a>
+    </div>
+    {% else %}
+    <div class="list-group">
+      {% for event in events %}
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="material-icons">event</i>
+            </div>
+            <div class="row-content">
+                <div class="least-content">{{ event.startdate |date("d/m/Y", false) }}</div>
+                <h4 class="list-group-item-heading"><a href="{{ path('junk_gift_bundle_event',{'id' : event.id}) }}">{{ event.name }}</a></h4>
+                <p class="list-group-item-text">Organisé par {{ event.owner.firstname }} {{ event.owner.lastname }}</p>
+                <a href="{{ path('junk_gift_bundle_invite_event',{'id' : event.id}) }}" class="btn btn-primary"><i class="material-icons">person_add</i></a>
+                <a href="{{ path('junk_gift_bundle_repartir_event',{'id' : event.id}) }}" class="btn btn-primary"><i class="material-icons">card_giftcard</i></a>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+      </div>
+    {% endfor %}
+    <div>
+      <a href="{{ path('junk_gift_bundle_create_event') }}" class="btn btn-danger btn-fab" style="position : fixed; bottom : 30px; right : 20px;"><i class="material-icons">add</i></a>
+    </div>
+  {% endif %}
 {% endblock %}

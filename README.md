@@ -2,7 +2,6 @@
 
 ## TODO
 
-- Fix Broken Registration after design integration
 - Fix success create event view
 - Invite event
 - Repartir gifts
