@@ -1,23 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  <div>
-    <h1>Anonymous Gift</h1>
-    <h2>Prochains évenements</h2>
-    <ul>
-    {% for event in events %}
-        <li>
-          <div>
-            {{ event.name }} commence le {{ event.startdate |date("d/m/Y", false) }}
-            <a href="{{ path('junk_gift_bundle_invite_event') }}">Inviter des amis</a>
-            <a href="{{ path('junk_gift_bundle_repartir_event') }}">Répartir les cadeaux</a>
+  <div class="container">
+      <div class="list-group">
+        {% for event in events %}
+          <div class="list-group-item">
+              <div class="row-action-primary">
+                <i class="material-icons">event</i>
+              </div>
+              <div class="row-content">
+                  <div class="least-content">{{ event.startdate |date("d/m/Y", false) }}</div>
+                  <h4 class="list-group-item-heading">{{ event.name }}</h4>
+                  <p class="list-group-item-text">Participants : John Doe, Junk OS</p>
+                  <a href="{{ path('junk_gift_bundle_invite_event') }}" class="btn btn-primary"><i class="material-icons">person_add</i></a>
+                  <a href="{{ path('junk_gift_bundle_repartir_event') }}" class="btn btn-primary"><i class="material-icons">card_giftcard</i></a>
+              </div>
           </div>
-        </li>
-
-    {% endfor %}
-    </ul>
+          <div class="list-group-separator"></div>
+        {% endfor %}
   </div>
   <div>
-    <a href="{{ path('junk_gift_bundle_create_event') }}">Créer un événement</a>
+    <a href="{{ path('junk_gift_bundle_create_event') }}" class="btn btn-danger btn-fab" style="position : fixed; bottom : 30px; right : 20px;"><i class="material-icons">add</i></a>
   </div>
 {% endblock %}
