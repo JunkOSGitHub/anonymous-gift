@@ -13,3 +13,8 @@ services:
         class: Junk\Bundle\GiftBundle\Form\InviteType
         tags:
             - { name: form.type, alias: invite_type }
+    redirect_register_user.registration.completed:
+        class: Junk\Bundle\GiftBundle\EventListener\RegistrationConfirmListener
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_subscriber }

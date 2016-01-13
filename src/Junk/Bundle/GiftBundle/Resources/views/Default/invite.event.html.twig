@@ -2,9 +2,8 @@
 
 {% block body %}
   <div>
-    <h1>Création d'un nouvel événement</h1>
+    <h1>Inviter un ami</h1>
     <p>
-      Votre évènement a bien été créé.
       Partagez le lien suivant <a href="{{url('event_shared_url', {'shared_token' : event.sharedToken}, true)}}">{{url('event_shared_url', {'shared_token' : event.sharedToken}, true)}}</a> au près de vos amis pour les inviter à vous rejoindre.
     </p>
     <p>

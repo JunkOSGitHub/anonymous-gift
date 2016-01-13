@@ -1,5 +1,16 @@
 # Anonymous Gift
 
+## TODO
+
+- Fix Broken Registration after design integration
+- Fix success create event view
+- Invite event
+- Repartir gifts
+- Material show
+- Material create event
+- Material invite event
+- Material success event
+
 ## Install
 
 ### MySQL

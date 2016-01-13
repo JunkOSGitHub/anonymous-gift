@@ -3,49 +3,56 @@
 {% block body %}
 <div class="container">
     <div class="well">
-        <form class="form-horizontal" name="fos_user_registration_form" method="post" action="/register/">
+        <form class="form-horizontal" {{ form_enctype(form) }} method="post" action="{{ path('fos_user_registration_register') }}">
             <fieldset>
                 <legend>Inscription</legend>
                     <div class="form-group">
                         <label for="inputUsername" class="col-md-2 control-label">Username</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="inputUsername" name="form[username]" placeholder="Username">
+                            {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Username', 'id': 'inputUsername'} }) }}
+                            {{ form_errors(form.username) }}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword" class="col-md-2 control-label">Password</label>
                         <div class="col-md-10">
-                            <input type="password" class="form-control" id="inputPassword" name="form[plainPassword.first]" placeholder="Password">
+                          {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Password', 'id': 'inputPassword'} }) }}
+                          {{ form_errors(form.plainPassword.first) }}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputRePassword" class="col-md-2 control-label">Confirm password</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="inputRePassword" name="form[plainPassword.second]" placeholder="Password">
+                          {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Password', 'id': 'inputRePassword'} }) }}
+                          {{ form_errors(form.plainPassword.second) }}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputFirstname" class="col-md-2 control-label">First name</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="inputFirstname" name="form[firstName]" placeholder="First name">
+                            {{ form_widget(form.firstname, { 'attr': {'class': 'form-control', 'placeholder': 'First Name', 'id': 'inputFirstname'} }) }}
+                            {{ form_errors(form.firstname) }}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputLastname" class="col-md-2 control-label">Last Name</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="inputLastname" name="form[lastName]" placeholder="Last name">
+                          {{ form_widget(form.lastname, { 'attr': {'class': 'form-control', 'placeholder': 'Last Name', 'id': 'inputLastname'} }) }}
+                          {{ form_errors(form.lastname) }}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail" class="col-md-2 control-label">Email</label>
                         <div class="col-md-10">
-                            <input type="email" class="form-control" id="inputEmail" name="form[email]" placeholder="Email">
+                          {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email', 'id': 'inputEmail'} }) }}
+                          {{ form_errors(form.email) }}
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-10 col-md-offset-2">
-                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                        <input type="submit" class="btn btn-primary" value="S'inscrire"></input>
                     </div>
+                    {{ form_rest(form) }}
                 </div>
             </fieldset>
         </form>
