@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div>
+    <h1>Anonymous Gift</h1>
+    <h2>Prochains évenements</h2>
+    <ul>
+    {% for event in events %}
+        <li>{{ event.name }} commence le {{ event.startdate }}</li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

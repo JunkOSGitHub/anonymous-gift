@@ -3,12 +3,14 @@
 namespace Junk\Bundle\GiftBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Junk\Bundle\GiftBundle\Entity\User;
 
 /**
  * Event
  *
  * @ORM\Table(name="event")
  * @ORM\Entity(repositoryClass="Junk\Bundle\GiftBundle\Repository\EventRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Event
 {
@@ -56,6 +58,21 @@ class Event
      */
     private $sharedToken;
 
+    /**
+    * @var User
+    *
+    * @ORM\ManyToOne(targetEntity="User")
+    */
+    private $owner;
+
+    public function getOwner(){
+      return $this->owner;
+    }
+
+    public function setOwner($user){
+      $this->owner = $user;
+      return $this;
+    }
 
     /**
      * Get id
@@ -186,5 +203,13 @@ class Event
     {
         return $this->sharedToken;
     }
-}
 
+    /**
+    * @ORM\PrePersist
+    */
+    public function prePersist(){
+      $this->token = md5(timestamp().rand(0,9999999));
+      $this->shared_token = md5(timestamp().rand(0,9999999));
+
+    }
+}
