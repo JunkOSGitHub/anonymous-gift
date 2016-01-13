@@ -9,43 +9,29 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 
-class EventType extends AbstractType
+class InviteType extends AbstractType
 {
-    private $context;
-
-    public function setSecurityContext($context){
-      $this->context = $context;
-    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
-                 'label' => 'Nom de l\'événement',
-                 'data' => 'Mon évément'
+            ->add('email', 'text', array(
+                 'label' => 'Adresse email',
+                 'data' => 'junkbutawesome.os@gmail.com'
             ))
-            ->add('startdate', DateTimeType::class, array(
-                 'label' => 'Date de début',
-                 'data' => new \DateTime()
+            ->add('message', 'text', array(
+                 'label' => 'Invitation',
+                 'data' => 'Votre ami {user.firstname} {user.lastname}, vous invite à le rejoindre sur anonymous-gift.local en cliquant sur le lien suivant : {path(‘event_shared_url’, {“shared_token” : shared_token}, true)}'
             ))
             ->add('save', SubmitType::class, array(
-                 'label' => 'Créer'
+                 'label' => 'Inviter'
             ))
         ;
-
-
-        $context = $this->context;
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($context){
-            $data = $event->getData();
-            $form = $event->getForm();
-            $user = $context->getToken()->getUser();
-            $data->setOwner($user);
-        });
     }
 
     public function getBlockPrefix()
     {
-        return 'event_type';
+        return 'invite_type';
     }
 
     // For Symfony 2.x
@@ -57,7 +43,7 @@ class EventType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Junk\Bundle\GiftBundle\Entity\Event',
+            'data_class' => 'Junk\Bundle\GiftBundle\Entity\Invite',
         ));
     }
 }

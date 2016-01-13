@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div>
+    <h1>Création d'un nouvel événement</h1>
+    <p>
+      Votre évènement a bien été créé.
+      Partagez le lien suivant <a href="{{url('event_shared_url', {'shared_token' : event.sharedToken}, true)}}">{{url('event_shared_url', {'shared_token' : event.sharedToken}, true)}}</a> au près de vos amis pour les inviter à vous rejoindre.
+    </p>
+    <p>
+      <h2>Inviter des amis</h2>
+      <div>
+        {{ form_start(form) }}+
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+      <div>
+    </p>
+  </div>
+  <div>
+    <a href="{{ path('junk_gift_bundle_app') }}">Home</a>
+  </div>
+{% endblock %}

@@ -9,3 +9,7 @@ services:
           - [setSecurityContext, [@security.context]]
         tags:
             - { name: form.type, alias: event_type }
+    app.form.invite.event:
+        class: Junk\Bundle\GiftBundle\Form\InviteType
+        tags:
+            - { name: form.type, alias: invite_type }

@@ -49,7 +49,7 @@ class Event
      *
      * @ORM\Column(name="is_distributed", type="boolean")
      */
-    private $isDistributed;
+    private $isDistributed = false;
 
     /**
      * @var string
@@ -208,8 +208,7 @@ class Event
     * @ORM\PrePersist
     */
     public function prePersist(){
-      $this->token = md5(timestamp().rand(0,9999999));
-      $this->shared_token = md5(timestamp().rand(0,9999999));
-
+      $this->token = md5(time().rand(0,9999999));
+      $this->sharedToken = md5(time().rand(0,9999999));
     }
 }
