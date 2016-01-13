@@ -1,14 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  <div>
-    <h1>Anonymous Gift</h1>
-    <p class="descriptif">
-      Welcome ! Un petit descriptif.
-    </p>
-    <div>
-      <a href="login">Login</a>
-      <a href="register">Sign Up </a>
-    </div>
+  <div class="container">
+      <div class="jumbotron">
+          <h2>Bienvenue sur Anonymous-gift</h2>
+          <p>Site de gestion d'évènements</p>
+          <a href="login" class="btn btn-raised btn-primary btn-lg">Se connecter</a>
+          <a href="register" class="btn btn-raised btn-primary btn-lg">S'inscrire</a>
+      </div>
   </div>
 {% endblock %}
