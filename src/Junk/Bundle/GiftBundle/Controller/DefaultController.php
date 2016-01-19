@@ -155,7 +155,7 @@ class DefaultController extends Controller
             )
             ->setParameter('user_id', $currentUser->getId())
             ->setParameter('event_id', $event->getId());
-          $userEvent = $query->getSingleResult();
+          $userEvent = $query->getOneOrNullResult();
           if($userEvent == null){
             // Create new UserEvent
             $userEvent = new UserEvent();

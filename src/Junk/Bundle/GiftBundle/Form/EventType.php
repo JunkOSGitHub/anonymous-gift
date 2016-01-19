@@ -25,8 +25,7 @@ class EventType extends AbstractType
                  'data' => 'Mon évément'
             ))
             ->add('startdate', DateTimeType::class, array(
-                 'label' => 'Date de début',
-                 'data' => new \DateTime()
+                 'label' => 'Date de début'
             ))
             ->add('save', SubmitType::class, array(
                  'label' => 'Créer'
