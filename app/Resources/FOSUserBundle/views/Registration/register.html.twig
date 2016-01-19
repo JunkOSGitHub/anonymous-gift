@@ -1,61 +1,59 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container">
-    <div class="well">
-        <form class="form-horizontal" {{ form_enctype(form) }} method="post" action="{{ path('fos_user_registration_register') }}">
-            <fieldset>
-                <legend>Inscription</legend>
-                    <div class="form-group">
-                        <label for="inputUsername" class="col-md-2 control-label">Username</label>
-                        <div class="col-md-10">
-                            {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Username', 'id': 'inputUsername'} }) }}
-                            {{ form_errors(form.username) }}
-                        </div>
+<div class="well">
+    <form class="form-horizontal" {{ form_enctype(form) }} method="post" action="{{ path('fos_user_registration_register') }}">
+        <fieldset>
+            <legend>Inscription</legend>
+                <div class="form-group">
+                    <label for="inputUsername" class="col-md-2 control-label">Username</label>
+                    <div class="col-md-10">
+                        {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Username', 'id': 'inputUsername'} }) }}
+                        {{ form_errors(form.username) }}
                     </div>
-                    <div class="form-group">
-                        <label for="inputPassword" class="col-md-2 control-label">Password</label>
-                        <div class="col-md-10">
-                          {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Password', 'id': 'inputPassword'} }) }}
-                          {{ form_errors(form.plainPassword.first) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputRePassword" class="col-md-2 control-label">Confirm password</label>
-                        <div class="col-md-10">
-                          {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Password', 'id': 'inputRePassword'} }) }}
-                          {{ form_errors(form.plainPassword.second) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputFirstname" class="col-md-2 control-label">First name</label>
-                        <div class="col-md-10">
-                            {{ form_widget(form.firstname, { 'attr': {'class': 'form-control', 'placeholder': 'First Name', 'id': 'inputFirstname'} }) }}
-                            {{ form_errors(form.firstname) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputLastname" class="col-md-2 control-label">Last Name</label>
-                        <div class="col-md-10">
-                          {{ form_widget(form.lastname, { 'attr': {'class': 'form-control', 'placeholder': 'Last Name', 'id': 'inputLastname'} }) }}
-                          {{ form_errors(form.lastname) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail" class="col-md-2 control-label">Email</label>
-                        <div class="col-md-10">
-                          {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email', 'id': 'inputEmail'} }) }}
-                          {{ form_errors(form.email) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-10 col-md-offset-2">
-                        <input type="submit" class="btn btn-primary" value="S'inscrire"></input>
-                    </div>
-                    {{ form_rest(form) }}
                 </div>
-            </fieldset>
-        </form>
-    </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-md-2 control-label">Password</label>
+                    <div class="col-md-10">
+                      {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Password', 'id': 'inputPassword'} }) }}
+                      {{ form_errors(form.plainPassword.first) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputRePassword" class="col-md-2 control-label">Confirm password</label>
+                    <div class="col-md-10">
+                      {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Password', 'id': 'inputRePassword'} }) }}
+                      {{ form_errors(form.plainPassword.second) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputFirstname" class="col-md-2 control-label">First name</label>
+                    <div class="col-md-10">
+                        {{ form_widget(form.firstname, { 'attr': {'class': 'form-control', 'placeholder': 'First Name', 'id': 'inputFirstname'} }) }}
+                        {{ form_errors(form.firstname) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputLastname" class="col-md-2 control-label">Last Name</label>
+                    <div class="col-md-10">
+                      {{ form_widget(form.lastname, { 'attr': {'class': 'form-control', 'placeholder': 'Last Name', 'id': 'inputLastname'} }) }}
+                      {{ form_errors(form.lastname) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-md-2 control-label">Email</label>
+                    <div class="col-md-10">
+                      {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email', 'id': 'inputEmail'} }) }}
+                      {{ form_errors(form.email) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                    <input type="submit" class="btn btn-primary" value="S'inscrire"></input>
+                </div>
+                {{ form_rest(form) }}
+            </div>
+        </fieldset>
+    </form>
 </div>
 {% endblock %}

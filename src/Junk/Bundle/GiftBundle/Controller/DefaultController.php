@@ -93,9 +93,16 @@ class DefaultController extends Controller
 
           return $this->redirectToRoute('junk_gift_bundle_app');
       }
+
+      $currentUser = $this->getUser();
+      $sharedUrl = $this->generateUrl('event_shared_url', array('shared_token' => $event->getSharedToken()));
+      $message = 'Votre ami '.$currentUser->getFirstName().' '.$currentUser->getLastName().' vous invite à le rejoindre sur anonymous-gift.local en cliquant sur le lien suivant : <a href="'.$sharedUrl.'">Lien</a>';
+
       return $this->render('JunkGiftBundle:Default:success.event.html.twig', array(
           'form' => $form->createView(),
-          'event' => $event
+          'event' => $event,
+          'sharedUrl' => $sharedUrl,
+          'sharedMessage' => $message
       ));
     }
 
@@ -117,9 +124,15 @@ class DefaultController extends Controller
 
           return $this->redirectToRoute('junk_gift_bundle_app');
       }
+      $currentUser = $this->getUser();
+      $sharedUrl = $this->generateUrl('event_shared_url', array('shared_token' => $event.sharedToken));
+      $message = 'Votre ami '.$currentUser->getFirstName().' '.$current->getLastName().' vous invite à le rejoindre sur anonymous-gift.local en cliquant sur le lien suivant : <a href="'.$sharedUrl.'">Lien</a>';
+
       return $this->render('JunkGiftBundle:Default:invite.event.html.twig', array(
           'form' => $form->createView(),
-          'event' => $event
+          'event' => $event,
+          'sharedUrl' => $sharedUrl,
+          'sharedMessage' => $message
       ));
     }
 

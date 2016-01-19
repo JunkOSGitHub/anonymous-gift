@@ -1,27 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="well">
-        <h2>{{ event.name }}, le {{ event.startdate |date("d/m/Y", false) }}</h2>
-        <p>Organisé par {{ event.owner.firstname|capitalize }} {{ event.owner.lastname|capitalize }}</p>
-        <h3>Liste des participants</h3>
-        <div class="list-group">
-            {% for userEvent in userEvents %}
-            <div class="list-group-item">
-                <div class="row-picture">
-                    <img class="circle" src="http://lorempixel.com/56/56/people" alt="icon">
-                </div>
-                <div class="row-content">
-                    <h4 class="list-group-item-heading">{{ userEvent.user.firstname|capitalize }} {{ userEvent.user.lastname|capitalize }}</h4>
-                    <p class="list-group-item-text"><em>email</em></p>
-                </div>
+<div class="well">
+    <h2>{{ event.name }}, le {{ event.startdate |date("d/m/Y", false) }}</h2>
+    <p>Organisé par {{ event.owner.firstname|capitalize }} {{ event.owner.lastname|capitalize }}</p>
+    <h3>Liste des participants</h3>
+    <div class="list-group">
+        {% for userEvent in userEvents %}
+        <div class="list-group-item">
+            <div class="row-picture">
+                <img class="circle" src="http://lorempixel.com/56/56/people" alt="icon">
             </div>
-            <div class="list-group-separator"></div>
-            {% endfor %}
-            <p>
-                <a href="{{ path('junk_gift_bundle_invite_event',{'id' : event.id}) }}" class="btn btn-primary"><i class="material-icons">person_add</i></a>
-                <a href="{{ path('junk_gift_bundle_repartir_event',{'id' : event.id}) }}" class="btn btn-primary"><i class="material-icons">card_giftcard</i></a>
-            </p>
+            <div class="row-content">
+                <h4 class="list-group-item-heading">{{ userEvent.user.firstname|capitalize }} {{ userEvent.user.lastname|capitalize }}</h4>
+                <p class="list-group-item-text"><em>{{ userEvent.user.email }}</em></p>
+            </div>
         </div>
+        <div class="list-group-separator"></div>
+        {% endfor %}
+        <p>
+            <a href="{{ path('junk_gift_bundle_invite_event',{'id' : event.id}) }}" class="btn btn-primary"><i class="material-icons">person_add</i></a>
+            <a href="{{ path('junk_gift_bundle_repartir_event',{'id' : event.id}) }}" class="btn btn-primary"><i class="material-icons">card_giftcard</i></a>
+        </p>
     </div>
+</div>
 {% endblock %}
