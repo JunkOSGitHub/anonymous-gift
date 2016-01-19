@@ -2,13 +2,8 @@
 
 ## TODO
 
-- Fix success create event view
-- Invite event
 - Repartir gifts
-- Material show
 - Material create event
-- Material invite event
-- Material success event
 
 ## Install
 

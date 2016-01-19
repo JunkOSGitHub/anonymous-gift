@@ -1,18 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  <div>
-    <h1>Inviter un ami</h1>
-    <p>
-      Partagez le lien suivant <a href="{{url('event_shared_url', {'shared_token' : event.sharedToken}, true)}}">{{url('event_shared_url', {'shared_token' : event.sharedToken}, true)}}</a> au près de vos amis pour les inviter à vous rejoindre.
-    </p>
-    <p>
-      <h2>Inviter des amis</h2>
-      <div>
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
-      <div>
-    </p>
-  </div>
+<div class="jumbotron">
+    <h2>Inviter un ami</h2>
+    <p>Votre évènement a bien été créé. Partagez le <a href="{{path('event_shared_url', {'shared_token' : event.sharedToken}, true)}}">lien</a> avec tous vos amis pour les inviter à vous rejoindre</p>
+    <hr>
+    <div>
+        <form class="form-horizontal" action="{{ path('junk_gift_bundle_invite_event', {'id' : event.id }) }}" {{ form_enctype(form) }} method="post">
+            <fieldset>
+                <legend>Inviter des amis</legend>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-md-2 control-label">Email</label>
+                    <div class="col-md-10">
+                        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email', 'id': 'inputEmail'} }) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="textArea" class="col-md-2 control-label">Message</label>
+                    <div class="col-md-10">
+                        {{ form_widget(form.message, { 'attr': {'class': 'form-control', 'id': 'textArea', 'rows' : '3' } }) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                      {{ form_widget(form.save, { 'attr': {'class': 'btn btn-primary'} }) }}
+                    </div>
+                </div>
+                {{ form_rest(form) }}
+            </fieldset>
+        </form>
+    </div>
+</div>
 {% endblock %}

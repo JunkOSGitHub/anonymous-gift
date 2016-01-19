@@ -5,6 +5,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
@@ -18,8 +19,8 @@ class InviteType extends AbstractType
             ->add('email', 'text', array(
                  'label' => 'Adresse email'
             ))
-            ->add('message', 'text', array(
-                 'label' => 'Invitation'
+            ->add('message', TextareaType::class, array(
+                 'label' => 'Message'
             ))
             ->add('save', SubmitType::class, array(
                  'label' => 'Inviter'
