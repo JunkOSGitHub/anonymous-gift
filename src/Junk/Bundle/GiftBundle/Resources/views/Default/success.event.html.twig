@@ -5,10 +5,11 @@
     <h1>Création d'un nouvel événement</h1>
     <p>
       Votre évènement a bien été créé.
-      Partagez le lien suivant <a href="{{url('event_shared_url', {'shared_token' : event.sharedToken}, true)}}">{{url('event_shared_url', {'shared_token' : event.sharedToken}, true)}}</a> au près de vos amis pour les inviter à vous rejoindre.
+      Partagez ce <a href="{{path('event_shared_url', {'shared_token' : event.sharedToken}, true)}}">lien</a> au près de vos amis pour les inviter à vous rejoindre.
     </p>
     <p>
       <h2>Inviter des amis</h2>
+      Votre ami {{app.user.firstname}} {{app.user.lastname}}, vous invite à le rejoindre sur anonymous-gift.local en cliquant sur le lien suivant : <a href="{{path('event_shared_url', {'shared_token' : event.sharedToken}, true)}}">Lien</a>
       <div>
         {{ form_start(form) }}
         {{ form_widget(form) }}

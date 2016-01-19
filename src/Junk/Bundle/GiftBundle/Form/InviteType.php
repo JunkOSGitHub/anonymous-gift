@@ -19,8 +19,7 @@ class InviteType extends AbstractType
                  'label' => 'Adresse email'
             ))
             ->add('message', 'text', array(
-                 'label' => 'Invitation',
-                 'data' => 'Votre ami {user.firstname} {user.lastname}, vous invite à le rejoindre sur anonymous-gift.local en cliquant sur le lien suivant : {path(‘event_shared_url’, {“shared_token” : shared_token}, true)}'
+                 'label' => 'Invitation'
             ))
             ->add('save', SubmitType::class, array(
                  'label' => 'Inviter'
