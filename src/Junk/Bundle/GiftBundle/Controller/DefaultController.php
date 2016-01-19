@@ -57,6 +57,7 @@ class DefaultController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $event = $form->getData();
+            $event->setStartDate(\DateTime::createFromFormat("d-m-Y H:i",$event->getStartDate()));
             $userEvent = new UserEvent();
             $userEvent->setUser($this->getUser());
             $userEvent->setEvent($event);
@@ -202,7 +203,7 @@ class DefaultController extends Controller
     /**
     * @Route("/app/repartirEvent/{id}",name="junk_gift_bundle_repartir_event")
     */
-    public function RepartirEventAction(Event $event){
+    public function repartirEventAction(Event $event){
 
     }
 }

@@ -24,7 +24,7 @@ class EventType extends AbstractType
                  'label' => 'Nom de l\'événement',
                  'data' => 'Mon évément'
             ))
-            ->add('startdate', DateTimeType::class, array(
+            ->add('startdate', 'text', array(
                  'label' => 'Date de début'
             ))
             ->add('save', SubmitType::class, array(

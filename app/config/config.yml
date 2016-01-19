@@ -74,3 +74,10 @@ fos_user:
     registration:
         form:
             type: Junk\Bundle\GiftBundle\Form\RegistrationType
+
+assetic:
+    debug: "%kernel.debug%"
+    use_controller: false
+    bundles: [JunkGiftBundle ]
+    filters:
+        cssrewrite: ~

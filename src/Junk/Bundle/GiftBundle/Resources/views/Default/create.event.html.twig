@@ -1,31 +1,54 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets 'bundles/junkgift/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block body %}
 <div class="well">
-    <form class="form-horizontal">
+    <form class="form-horizontal" action="{{ path('junk_gift_bundle_create_event') }}" {{ form_enctype(form) }} method="post">
         <fieldset>
             <legend>Créer un évènement</legend>
                 <div class="form-group">
                     <label for="inputName" class="col-md-2 control-label">Name</label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" id="inputName" placeholder="Name">
+                      {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Name', 'id': 'inputName'} }) }}
+                      {{ form_errors(form.name) }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputDate" class="col-md-2 control-label">Date</label>
                     <div class="col-md-10">
                         <div class="form-control-wrapper">
-                            <input type="text" id="inputDate" class="form-control" placeholder="Date de l'évènement">
+                          {{ form_widget(form.startdate, { 'attr': {'class': 'form-control', 'placeholder': 'Date de l\'évènement', 'id': 'inputDate'} }) }}
+                          {{ form_errors(form.startdate) }}
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-10 col-md-offset-2">
-                    <button type="button" class="btn btn-default">Annuler</button>
-                    <button type="submit" class="btn btn-primary">Créer</button>
+                    {{ form_widget(form.save, { 'attr': {'class': 'btn btn-primary'} }) }}
                 </div>
+                {{ form_rest(form) }}
             </div>
         </fieldset>
     </form>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@JunkGiftBundle/Resources/public/js/*' %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+        <script src="{{ asset_url }}"></script>
+        <script>
+          $(function(){
+            console.log($('#event_type_startdate'))
+            $('#event_type_startdate').bootstrapMaterialDatePicker({format: 'DD-MM-YYYY HH:mm'});
+          })
+        </script>
+    {% endjavascripts %}
 {% endblock %}
