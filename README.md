@@ -2,8 +2,7 @@
 
 ## TODO
 
-- Repartir gifts
-- Material create event
+- Nothing
 
 ## Install
 
