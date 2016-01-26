@@ -182,18 +182,7 @@ class DefaultController extends Controller
     * @Route("/app/event/{id}", name="junk_gift_bundle_event")
     */
     public function showEventAction(Event $event){
-      $em = $this->getDoctrine()->getManager();
-      $query = $em->createQuery(
-          'SELECT u, e
-          FROM JunkGiftBundle:UserEvent u
-          JOIN u.event e
-          WHERE e.id = :id
-          ORDER BY e.startdate ASC'
-      );
-
-      $query->setParameter('id',$event->getId());
-      $userEvents = $query->getResult();
-
+      $userEvents = $this->getUserEvents($event);
       return $this->render('JunkGiftBundle:Default:show.event.html.twig', array(
           'event' => $event,
           'userEvents' => $userEvents
@@ -204,6 +193,54 @@ class DefaultController extends Controller
     * @Route("/app/repartirEvent/{id}",name="junk_gift_bundle_repartir_event")
     */
     public function repartirEventAction(Event $event){
+      if(!$event->getIsDistributed()){
+        $this->repartirGift($event);
+      }
+      return $this->redirectToRoute('junk_gift_bundle_event',array(
+        'id' => $event->getId()
+      ));
+    }
 
+    /**
+    * Retrieve user events
+    */
+    function getUserEvents($event){
+      $em = $this->getDoctrine()->getManager();
+      $query = $em->createQuery(
+          'SELECT u, e
+          FROM JunkGiftBundle:UserEvent u
+          JOIN u.event e
+          WHERE e.id = :id
+          ORDER BY e.startdate ASC'
+      );
+      $query->setParameter('id',$event->getId());
+      return $query->getResult();
+    }
+
+    function repartirGift($event){
+      $em = $this->getDoctrine()->getManager();
+      $userEvents = $this->getUserEvents($event);
+      if(count($userEvents) <= 1){
+        return;
+      }
+      shuffle($userEvents);
+      $users = array();
+      foreach ($userEvents as $userEvent){
+        $users[] = $userEvent->getUser();
+      }
+      $nbUsers = count($users);
+      for($i = 0; $i < $nbUsers; $i++){
+        if( $i === $nbUsers - 1 ){
+          $userEvents[$i]->setReceivedUser($users[0]);
+        }
+        else{
+          $userEvents[$i]->setReceivedUser($users[$i+1]);
+        }
+        $em->persist($userEvents[$i]);
+      }
+      $event->setIsDistributed(true);
+      // Persist
+      $em->persist($event);
+      $em->flush();
     }
 }
